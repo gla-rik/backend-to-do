@@ -1,21 +1,15 @@
-package controllers
+package controller
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "github.com/gin-gonic/gin"
 
-// PingController структура контроллера для обработки запросов ping
 type PingController struct{}
 
-// NewPingController Конструктор для PingController
+// Конструктор для PingController
 func NewPingController() *PingController {
 	return &PingController{}
 }
 
-// Ping Метод для обработки GET-запросов
+// Обработчик для эндпоинта /ping
 func (pingController *PingController) Ping(c *gin.Context) {
-	// Логика ответа
-	c.JSON(200, gin.H{
-		"message": "pong", // JSON-объект, который возвращается в ответе
-	})
+	c.JSON(200, gin.H{"message": "pong"})
 }

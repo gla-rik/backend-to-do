@@ -2,22 +2,20 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/glarik/backend-to-do/internal/routes"
+	controller "github.com/glarik/backend-to-do/internal/controllers"
+	"github.com/glarik/backend-to-do/internal/router"
 )
 
 func main() {
-	// Инициализация Gin
-	r := gin.Default()
+	// Инициализация gin
+	ginInstance := gin.Default()
 
-	// Создание маршрутизатора
-	router := routes.NewRouter()
+	// Создание экземпляра PingController
+	pingController := controller.NewPingController()
 
-	// Регистрация маршрутов
-	router.RegisterRoutes(r)
+	// Создание экземпляра Router
+	_ = router.NewRouter(ginInstance, pingController)
 
 	// Запуск сервера
-	err := r.Run()
-	if err != nil {
-		return
-	} // по умолчанию на порту 8080
+	ginInstance.Run()
 }
